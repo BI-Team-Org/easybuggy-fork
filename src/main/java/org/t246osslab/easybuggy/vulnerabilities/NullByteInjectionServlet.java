@@ -48,6 +48,13 @@ public class NullByteInjectionServlet extends AbstractServlet {
                 responseToClient(req, res, getMsg("title.nullbyteinjection.page", locale), bodyHtml.toString());
                 return;
             }
+            
+            File file2 = new File(appPath + File.separator + "pdf" + File.separator + fileName);
+            if (!file2.exists()) {
+                responseToClient(req, res, getMsg("title.nullbyteinjection.page", locale), bodyHtml.toString());
+                return;
+            }
+            
             log.debug("File location on server::" + file.getAbsolutePath());
             ServletContext ctx = getServletContext();
             fis = new FileInputStream(file);
